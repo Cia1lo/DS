@@ -11,7 +11,7 @@ struct HuffmanNode
     HuffmanNode* left;
     HuffmanNode* right;
 };
-void caluate(char str[], HuffmanNode Tree)
+void caluate(char str[], HuffmanNode Tree[])
 {
     int len = strlen(str);
     int cal[26];
@@ -37,6 +37,7 @@ int main()
 {
     cin >> str;
     HuffmanNode Tree[368];
+    caluate(str, Tree);
     
     
     system("pause");
