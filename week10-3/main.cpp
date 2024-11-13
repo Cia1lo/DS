@@ -2,11 +2,19 @@
 
 using namespace std;
 
+struct HuffmanNode
+{
+    char value;
+    int freq;//权重
+    HuffmanNode* left;
+    HuffmanNode* right;
+};
+
 int main()
 {
     
-    cout<<"hello world";
-    cout<<endl;
+    
+    
     system("pause");
     return 0;
 }
