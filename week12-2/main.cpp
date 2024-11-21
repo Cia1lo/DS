@@ -42,7 +42,32 @@ void CreatALGraph(ALGraph* G)
     }
 }
 
+void DFS(ALGraph* G, int start, bool visited[])
+{
+    visited[start] = true;
+    printf("%d ", start);
+    ArcNode *p = G->vertices[start].firstarc; 
+    
+    while (p)
+    {
+        if (!visited[p->adjvex])
+        {
+            DFS(G, p->adjvex, visited);
+        }
+        p = p->nextarc;
+    }
+}
+
+
 int main()
 {
-
+    ALGraph G;
+    CreatALGraph(&G);
+    bool visited[MaxVexNum] = {false};
+    for (int i = 0; i < G.vernum; i++) {
+        if (!visited[i]) {
+            DFS(&G, i, visited);  // 从未访问的顶点开始新的 DFS
+        }
+    }
+    return 0;
 }
