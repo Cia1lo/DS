@@ -42,35 +42,60 @@ void CreatALGraph(ALGraph* G)
     }
 }
 
-void DFS(ALGraph* G, int start, bool visited[])
+bool DFS(ALGraph *G, int v, bool visited[], int path[], int *pathIndex)
 {
-    visited[start] = true;
-    printf("%d ", start);
-    ArcNode *p = G->vertices[start].firstarc; 
-    
+    visited[v] = true;
+    path[(*pathIndex)++] = v;
+
+    if (*pathIndex == G->vernum)
+    {
+        return true;
+    }
+
+    ArcNode *p = G->vertices[v].firstarc;
     while (p)
     {
         if (!visited[p->adjvex])
         {
-            DFS(G, p->adjvex, visited);
+            if (DFS(G, p->adjvex, visited, path, pathIndex))
+            {
+                return true;
+            }
         }
         p = p->nextarc;
     }
+
+    visited[v] = false;
+    (*pathIndex)--;
+    return false;
 }
 
+void FindSimplePath(ALGraph *G)
+{
+    bool visited[MaxVexNum] = {false};
+    int path[MaxVexNum];
+    int pathIndex = 0;
+
+    for (int i = 0; i < G->vernum; i++)
+    {
+        if (DFS(G, i, visited, path, &pathIndex))
+        {
+            for (int j = 0; j < pathIndex; j++)
+            {
+                printf("%d ", path[j]);
+            }
+            printf("\n");
+            return;
+        }
+    }
+
+    printf("No simple path found.\n");
+}
 
 int main()
 {
     ALGraph G;
     CreatALGraph(&G);
-    bool visited[MaxVexNum] = {false};
-    for (int i = 0; i < G.vernum; i++) {
-        if (!visited[i]) {
-            DFS(&G, i, visited);  // 从未访问的顶点开始新的 DFS
-        }
-    }
-
-
-    
+    FindSimplePath(&G);
     return 0;
 }
