@@ -1,0 +1,9 @@
+﻿  源.cpp
+E:\C_CODE\DS\Project1\Project1\源.cpp(106,9): error C2664: “DWORD K32GetModuleBaseNameW(HANDLE,HMODULE,LPWSTR,DWORD)”: 无法将参数 3 从“char *”转换为“LPWSTR”
+  E:\C_CODE\DS\Project1\Project1\源.cpp(106,43):
+  指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\psapi.h(181,1):
+  参见“K32GetModuleBaseNameW”的声明
+  E:\C_CODE\DS\Project1\Project1\源.cpp(106,9):
+  尝试匹配参数列表“(HANDLE, int, char *, int)”时
+  
